@@ -1,7 +1,7 @@
 
 import React from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
-import Sidebar from '@/components/sidebar/Sidebar';
+import Sidebar from '@/components/sidebar/LeftSidebar';
 import VisualizationPanel from '@/components/visualization/VisualizationPanel';
 import AlertButton from '@/components/alerts/AlertButton';
 import { SimulationProvider } from '@/context/SimulationContext';

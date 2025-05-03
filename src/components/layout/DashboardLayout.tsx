@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import RightSidebar from '../sidebar/RightSidebar';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -9,35 +9,40 @@ interface DashboardLayoutProps {
 }
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, sidebar }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [leftSidebarOpen, setLeftSidebarOpen] = useState(true);
+  const [rightSidebarOpen, setRightSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  const toggleSidebar = () => {
-    setSidebarOpen(prev => !prev);
+  const toggleLeftSidebar = () => {
+    setLeftSidebarOpen(prev => !prev);
+  };
+
+  const toggleRightSidebar = () => {
+    setRightSidebarOpen(prev => !prev);
   };
   
   return (
     <div className="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-900">
-      {/* Sidebar for desktop */}
+      {/* Left Sidebar for desktop - Controls */}
       <div
         className={cn(
           "hidden md:block bg-white dark:bg-crowdflow-blue-dark border-r border-gray-200 dark:border-gray-800 transition-all duration-300",
-          sidebarOpen ? "w-80" : "w-16"
+          leftSidebarOpen ? "w-80" : "w-16"
         )}
       >
         <div className="h-full flex flex-col">
           {/* Sidebar header */}
           <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
-            {sidebarOpen && (
+            {leftSidebarOpen && (
               <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                CrowdFlowAI
+                Controls
               </h2>
             )}
             <button
-              onClick={toggleSidebar}
+              onClick={toggleLeftSidebar}
               className="p-1.5 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
-              {sidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
+              {leftSidebarOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
             </button>
           </div>
           
@@ -65,7 +70,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, sidebar }) 
       >
         <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
           <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            CrowdFlowAI
+            Controls
           </h2>
           <button
             onClick={() => setMobileMenuOpen(false)}
@@ -83,22 +88,60 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, sidebar }) 
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="bg-white dark:bg-crowdflow-blue-dark shadow-sm z-10 h-16 flex items-center px-4">
+        <header className="bg-white dark:bg-crowdflow-blue-dark shadow-sm z-10 h-16 flex items-center px-4 justify-between">
+          <div className="flex items-center">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="p-1.5 mr-4 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 md:hidden"
+            >
+              <Menu size={20} />
+            </button>
+            <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+              CrowdFlowAI
+            </h1>
+          </div>
           <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="p-1.5 mr-4 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 md:hidden"
+            onClick={toggleRightSidebar}
+            className="p-1.5 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hidden md:block"
           >
-            <Menu size={20} />
+            {rightSidebarOpen ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
           </button>
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-            Crowd Flow Analysis Dashboard
-          </h1>
         </header>
         
         {/* Main content area */}
         <main className="flex-1 overflow-y-auto p-4">
           {children}
         </main>
+      </div>
+
+      {/* Right Sidebar for desktop - Video Upload */}
+      <div
+        className={cn(
+          "hidden md:block bg-white dark:bg-crowdflow-blue-dark border-l border-gray-200 dark:border-gray-800 transition-all duration-300",
+          rightSidebarOpen ? "w-80" : "w-16"
+        )}
+      >
+        <div className="h-full flex flex-col">
+          {/* Sidebar header */}
+          <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-800">
+            {rightSidebarOpen && (
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                Video Setup
+              </h2>
+            )}
+            <button
+              onClick={toggleRightSidebar}
+              className="p-1.5 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              {rightSidebarOpen ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+            </button>
+          </div>
+          
+          {/* Sidebar content */}
+          <div className="flex-1 overflow-y-auto">
+            <RightSidebar collapsed={!rightSidebarOpen} />
+          </div>
+        </div>
       </div>
     </div>
   );

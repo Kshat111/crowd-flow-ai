@@ -26,7 +26,7 @@ const AlertButton: React.FC = () => {
   }[alertType];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       <HoverCard open={open} onOpenChange={setOpen}>
         <HoverCardTrigger asChild>
           <button

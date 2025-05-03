@@ -242,7 +242,7 @@ const VideoUploadPanel: React.FC = () => {
             />
           </div>
           
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="transformation-preset">Transformation Preset</Label>
             <Select defaultValue="default">
               <SelectTrigger>
@@ -255,7 +255,7 @@ const VideoUploadPanel: React.FC = () => {
                 <SelectItem value="custom">Custom Matrix</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
         </div>
       </CardContent>
       
