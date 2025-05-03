@@ -20,8 +20,8 @@ const ControlPanel: React.FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg">Control Panel</CardTitle>
+      <CardHeader className="pb-1">
+        {/* <CardTitle className="text-lg">Control Panel</CardTitle> */}
       </CardHeader>
       
       <CardContent className="space-y-4">

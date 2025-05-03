@@ -2,11 +2,11 @@ import React from 'react';
 import ControlPanel from '../panels/ControlPanel';
 import { cn } from '@/lib/utils';
 
-interface SidebarProps {
+interface LeftSidebarProps {
   collapsed?: boolean;
 }
 
-const LeftSidebar: React.FC<SidebarProps> = ({ collapsed = false }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ collapsed = false }) => {
   return (
     <div className={cn("flex flex-col gap-4 p-4", collapsed && "items-center")}>
       {collapsed ? (
