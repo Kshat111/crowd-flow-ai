@@ -159,6 +159,8 @@ export const SimulationProvider: React.FC<{ children: ReactNode }> = ({ children
     setParticleDensity,
     setSmoothingFactor,
     setPerspectiveMatrix,
+
+    
     
     isPlaying,
     isDetectionRunning,
