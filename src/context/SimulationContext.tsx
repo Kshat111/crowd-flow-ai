@@ -16,6 +16,7 @@ interface SimulationContextType {
   setParticleDensity: (density: number) => void;
   setSmoothingFactor: (factor: number) => void;
   setPerspectiveMatrix: (matrix: number[][]) => void;
+    setVideoUrl: (url: string | null) => void;
   
   // Control state
   isPlaying: boolean;
@@ -148,6 +149,7 @@ export const SimulationProvider: React.FC<{ children: ReactNode }> = ({ children
     videoFile,
     videoUrl,
     setVideoFile,
+    setVideoUrl,
     
     frameRate,
     particleDensity,
